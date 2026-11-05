@@ -1,0 +1,53 @@
+/* V11 — acabamento visual, legibilidade e responsividade. */
+:root { --section-space: clamp(52px, 7vw, 92px); }
+html { scroll-padding-top: calc(var(--header-height) + 20px); }
+.section { padding-block: var(--section-space); }
+.section-heading.center { margin-bottom: clamp(26px, 4vw, 46px); }
+.about-grid, .process-grid, .faq-layout { min-width: 0; }
+.about-grid > *, .process-grid > *, .faq-layout > * { min-width: 0; }
+.about-copy p { max-width: 68ch; }
+.service-cards { align-items: stretch; }
+.service-card { display:flex; flex-direction:column; min-width:0; border-radius: 14px; }
+.service-card .text-link { align-self:flex-start; margin-top:auto; }
+.service-card p { flex:1; }
+.button, .contact-status { max-width:100%; }
+.button { text-align:center; }
+.faq-list summary { line-height:1.45; }
+.faq-list details[open] p { animation: faq-appear .22s ease-out; }
+@keyframes faq-appear { from {opacity:.35; transform:translateY(-4px)} to {opacity:1;transform:none} }
+.site-footer { padding-block: clamp(26px, 4vw, 42px); }
+.footer-inner { align-items:center; }
+.back-to-top { display:inline-flex; align-items:center; min-height:44px; padding:8px 2px; text-underline-offset:5px; }
+.back-to-top:hover { color:#fff; text-decoration:underline; }
+@media (hover:hover) and (prefers-reduced-motion:no-preference) {
+  .service-card { transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease; }
+  .service-card:hover { border-color:#c9c7b5; }
+}
+@media (max-width:900px) {
+  .about-grid { align-items:start; }
+  .process-grid { gap:32px; }
+  .service-card { padding:clamp(24px,4vw,34px); }
+}
+@media (max-width:680px) {
+  .container { width:calc(100% - 36px); }
+  .hero-grid { padding-block: clamp(54px,9vh,82px) 100px; }
+  .hero h1 { font-size:clamp(2.7rem,10vw,4.3rem); overflow-wrap:break-word; }
+  .hero-services { gap:12px; }
+  .about-photo { width:min(88%,380px); }
+  .photo-accent { right:-12px; padding:14px 18px; font-size:.95rem; }
+  .about-copy h2, .faq-layout h2 { font-size:clamp(2.25rem,9vw,3.1rem); }
+  .section { padding-block:56px; }
+  .service-cards { gap:18px; }
+  .service-card p { min-height:0; }
+  .steps { padding-left:18px; }
+  .step { gap:16px; }
+  .contact-section { padding-block:clamp(70px,12vh,100px); }
+  .contact-status { white-space:normal; text-align:center; justify-content:center; border-radius:18px; }
+  .footer-inner { gap:16px; }
+}
+@media (max-width:380px) {
+  .brand-copy small { letter-spacing:0; }
+  .hero h1 { font-size:clamp(2.35rem,10vw,2.85rem); }
+  .hero-services { font-size:.76rem; }
+}
+@media (prefers-reduced-motion:reduce) { .faq-list details[open] p { animation:none; } }

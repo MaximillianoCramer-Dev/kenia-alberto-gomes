@@ -1,0 +1,81 @@
+/* V6 — enquadramento responsivo sem cortes de conteúdo. */
+:root { --header-height: 72px; }
+html { scroll-padding-top: calc(var(--header-height) + 12px); }
+main section[id] { scroll-margin-top: calc(var(--header-height) + 12px); }
+.site-header { height: var(--header-height); }
+.header-inner { min-width: 0; }
+.section { padding-block: clamp(56px, 7vh, 86px); }
+.about-grid { gap: clamp(28px, 5vw, 76px); align-items: center; }
+.about-photo { width: min(100%, 460px); margin-inline: auto; }
+.about-photo > img { max-height: min(68vh, 610px); width: 100%; object-fit: cover; object-position: center 34%; }
+.about-copy p { line-height: 1.72; margin-bottom: 12px; }
+.about-copy h2 { margin: 10px 0 16px; }
+.section-heading.center { margin-bottom: clamp(26px, 4vh, 42px); }
+.service-card { padding: clamp(24px, 3vw, 36px); }
+.service-card p { min-height: 0; }
+.process-grid, .faq-layout { gap: clamp(28px, 5vw, 68px); }
+.quote-section { padding-block: clamp(55px, 7vh, 78px); }
+.contact-section { padding-block: clamp(65px, 8vh, 95px); }
+.hero, .hero-grid { min-height: max(560px, calc(100svh - var(--header-height))); }
+.hero-grid { padding-block: clamp(48px, 7vh, 75px) clamp(74px, 9vh, 100px); }
+.hero h1 { font-size: clamp(2.8rem, 5vw, 5.3rem); margin-block: 14px 10px; }
+.hero .gold-swoosh { margin-block: 15px 14px; }
+.hero-services { margin-block: 20px 24px; }
+@media (max-height: 780px) and (min-width: 901px) {
+ .section { padding-block: 48px; }
+ .hero, .hero-grid { min-height: max(520px, calc(100svh - var(--header-height))); }
+ .hero-grid { padding-block: 42px 75px; }
+ .hero h1 { font-size: clamp(2.7rem, 4.4vw, 4.6rem); }
+ .hero-lead { line-height: 1.5; }
+ .about-photo > img { max-height: 62vh; }
+ .about-copy p { font-size: .92rem; line-height: 1.58; margin-bottom: 10px; }
+ .about-copy .section-intro { font-size: 1.06rem; }
+}
+@media (max-width: 900px) {
+ .about-grid, .process-grid { gap: 34px; }
+ .about-photo > img { max-height: none; }
+}
+@media (max-width: 680px) {
+ :root { --header-height: 68px; }
+ .section { padding-block: 56px; }
+ .hero, .hero-grid { min-height: max(600px, calc(100svh - var(--header-height))); }
+ .hero-grid { padding-block: 56px 86px; }
+ .hero h1 { font-size: clamp(2.65rem, 10vw, 4.4rem); }
+ .about-photo { width: min(85%, 380px); }
+ .about-copy h2 { font-size: clamp(2.5rem, 9vw, 3.2rem); }
+ .service-card { padding: 28px; }
+ .faq-layout, .process-grid { gap: 28px; }
+}
+@media (max-width: 380px) { .hero, .hero-grid { min-height: 650px; } }
+
+
+/* V8 — mensagem integrada à biografia, sem seção independente. */
+.about-reflection {
+  margin: 20px 0 12px;
+  padding: 12px 0 12px 20px;
+  border-left: 3px solid var(--gold);
+  font-family: "Inter", Arial, sans-serif;
+  font-size: clamp(.92rem, 1.15vw, 1.05rem);
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: -.01em;
+  color: var(--green);
+}
+.about-reflection + .signature { margin-top: 15px; }
+@media (max-width: 680px) {
+  .about-reflection { font-size: .94rem; padding-left: 15px; }
+}
+
+
+/* V10: navegação enquadrada e footer sempre alcançável. */
+html { scroll-snap-type: none; }
+body { overflow-x: clip; }
+main, .site-footer { overflow: visible; }
+.site-footer { position: relative; min-height: 112px; padding-block: 28px; }
+.footer-inner { min-height: 56px; flex-wrap: wrap; row-gap: 18px; }
+#sobre, #abordagens, #como-funciona, #duvidas, #contato { scroll-margin-top: calc(var(--header-height) + 18px); }
+@media (max-width: 680px) {
+  .site-footer { padding-block: 30px; }
+  .footer-inner { gap: 14px; }
+  .footer-inner > * { max-width: 100%; }
+}

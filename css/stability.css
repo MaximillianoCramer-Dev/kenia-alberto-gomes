@@ -1,0 +1,66 @@
+/* V13 — estabilidade e enquadramento. Carregado por último. */
+:root { --header-height: 72px; }
+html { scroll-snap-type: none !important; scroll-padding-top: calc(var(--header-height) + 20px); }
+body { overflow-x: clip; }
+main, main section, .site-footer { height: auto; max-height: none; }
+main section[id] { scroll-margin-top: calc(var(--header-height) + 20px); }
+.section { padding-block: clamp(64px, 7vw, 100px); }
+.section-heading.center { margin-bottom: clamp(28px, 4vw, 48px); }
+.about-grid { align-items: start; gap: clamp(28px, 4vw, 60px); }
+.about-photo { position: relative; align-self: start; }
+.about-photo::before { inset: 12px -10px -12px 10px; }
+.about-photo > img { width: 100%; height: auto; max-height: 620px; object-fit: cover; object-position: center 30%; }
+/* Evita que a etiqueta da foto esconda o retrato ou concorra com a biografia. */
+.about-photo .photo-accent { position: static; transform: none; max-width: 100%; margin-top: 14px; padding: 10px 14px; font-size: .85rem; line-height: 1.45; text-align: center; }
+.about-copy { min-width: 0; }
+.about-copy p { overflow-wrap: break-word; }
+.qualification-strip { margin-block: 16px 20px; }
+.service-cards { align-items: stretch; }
+.service-card { min-width: 0; }
+.service-card p { min-height: 0; }
+/* O título da seção fica no fluxo e não desaparece sob o menu. */
+.services-section .section-heading { position: relative; transform: none; }
+.contact-section { overflow: clip; }
+.site-footer { position: relative !important; padding-block: 28px max(34px, env(safe-area-inset-bottom)); }
+.footer-inner { flex-wrap: wrap; row-gap: 18px; }
+/* Uma única animação por elemento, sem esconder conteúdo durante navegação por âncora. */
+.js-motion .reveal { transition-duration: .5s; transform: translateY(12px); }
+.js-motion .reveal.visible { transform: none; }
+@media (max-width: 900px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .about-photo { width: min(100%, 420px); margin-inline: auto; }
+  .about-photo > img { max-height: none; }
+  .section { padding-block: 68px; }
+}
+@media (max-width: 680px) {
+  :root { --header-height: 68px; }
+  .section { padding-block: 56px; }
+  .about-photo { width: min(92%, 380px); }
+  .about-copy h2 { font-size: clamp(2.2rem, 9vw, 3rem); }
+  .service-card { padding: 28px 24px; }
+  .contact-section { padding-block: 72px; }
+  .footer-inner { flex-direction: column; text-align: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js-motion .reveal { opacity: 1 !important; transform: none !important; }
+}
+
+/* V14: acessibilidade e robustez, sem alterações na composição visual. */
+@media (max-width: 1180px) {
+  .main-nav a { min-height: 44px; display: flex; align-items: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .service-card, .service-card .card-icon, .step { transform: none !important; }
+}
+
+/* V15: revelação perceptível, mantendo o layout e a acessibilidade. */
+@media (prefers-reduced-motion: no-preference) {
+  .js-motion .reveal {
+    transform: translateY(22px);
+    transition: opacity .72s ease-out, transform .72s cubic-bezier(.2,.7,.2,1);
+  }
+  .js-motion .reveal.visible { transform: translateY(0); }
+}
+
+/* V16: animacao via Web Animations API, sem esconder elementos no CSS. */
+.reveal, .js-motion .reveal, .js-motion .reveal.visible { opacity: 1; transform: none; }
